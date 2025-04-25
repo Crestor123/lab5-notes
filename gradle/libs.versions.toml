@@ -12,6 +12,7 @@ lifecycleViewmodelCompose = "2.8.7"
 roomCommonJvm = "2.7.0"
 roomRuntimeAndroid = "2.7.0"
 datastoreCoreAndroid = "1.1.5"
+datastorePreferencesCoreAndroid = "1.1.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +43,7 @@ lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel
 room-compiler = { module = "androidx.room:room-compiler" }
 androidx-datastore-core-android = { group = "androidx.datastore", name = "datastore-core-android", version.ref = "datastoreCoreAndroid" }
 datastore-preferences = "androidx.datastore:datastore-preferences:1.0.0"
+androidx-datastore-preferences-core-android = { group = "androidx.datastore", name = "datastore-preferences-core-android", version.ref = "datastorePreferencesCoreAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
