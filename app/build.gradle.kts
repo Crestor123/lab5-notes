@@ -54,9 +54,11 @@ dependencies {
     implementation(libs.androidx.room.runtime.android)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.lifecycle.viewmodel.compose)
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.core.ktx)
+    implementation(libs.androidx.datastore.core.android)
     ksp("androidx.room:room-compiler:2.7.0")
     implementation(libs.androidx.room.ktx)
 

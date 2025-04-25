@@ -1,5 +1,7 @@
 package com.example.notes.ui
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.notes.data.Note
@@ -11,9 +13,10 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val notesRepository: NotesRepository) : ViewModel() {
+class HomeViewModel(private val notesRepository: NotesRepository, application: Application) : AndroidViewModel(application) {
     private val _currentNote = MutableStateFlow<Note?>(null)
     val currentNote: StateFlow<Note?> = _currentNote
+
 
     val homeUiState: StateFlow<HomeUiState> =
         notesRepository.getAllNotesStream().map { notes ->
