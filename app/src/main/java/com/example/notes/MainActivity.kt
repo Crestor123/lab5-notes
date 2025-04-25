@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NotesTheme {
+            NotesTheme() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                 ) {

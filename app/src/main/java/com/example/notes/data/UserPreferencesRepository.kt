@@ -30,7 +30,7 @@ class UserPreferencesRepository (
             }
         }
         .map { preferences ->
-            preferences[IS_DARK_MODE] ?: true
+            preferences[IS_DARK_MODE] ?: false
         }
 
     suspend fun saveLayoutPreference(isDarkMode: Boolean) {

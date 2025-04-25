@@ -5,11 +5,16 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.notes.NotesApplication
+import com.example.notes.ui.theme.ThemeViewModel
 
 object AppViewModelProvider {
     val Factory = viewModelFactory {
         initializer {
-            HomeViewModel(notesApplication().container.notesRepository, notesApplication().userPreferencesRepository)
+            HomeViewModel(notesApplication().container.notesRepository)
+        }
+
+        initializer {
+            ThemeViewModel(notesApplication().userPreferencesRepository)
         }
     }
 }
