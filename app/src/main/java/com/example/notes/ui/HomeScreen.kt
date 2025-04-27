@@ -39,6 +39,8 @@ import com.example.notes.data.Note
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.modifier.modifierLocalMapOf
+import androidx.compose.ui.platform.testTag
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
@@ -77,7 +79,8 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(factory = AppViewModelProvid
 
     Scaffold(
         floatingActionButton = { FloatingActionButton(
-            onClick = { AddDialog.value = true }
+            onClick = { AddDialog.value = true },
+            modifier = Modifier.testTag("fab")
         ) {
             Icon(
                 imageVector = Icons.Default.Add,
@@ -89,7 +92,8 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(factory = AppViewModelProvid
             AddDialog.value -> {
                 NoteDialog(
                     onDismissRequest = { AddDialog.value = false },
-                    onConfirmation = newNote
+                    onConfirmation = newNote,
+                    modifier = Modifier.testTag("addDialog")
                 )
             }
         }
@@ -100,7 +104,8 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(factory = AppViewModelProvid
                     onDismissRequest = { EditDialog.value = false },
                     onConfirmation = editNote,
                     onDeleteClick = deleteNote,
-                    note = homeUiState.currentNote
+                    note = homeUiState.currentNote,
+                    modifier = Modifier.testTag("editDialog")
                 )
             }
         }
@@ -122,6 +127,7 @@ fun NoteList(
 ) {
     LazyColumn (
         modifier = Modifier.padding(16.dp)
+            .testTag("lazycolumn")
     ) {
         items(items = noteList, key = {it.id}) { item ->
             NoteCard(item, onNoteClick)
@@ -160,7 +166,8 @@ fun NoteDialog(
     onDismissRequest: () -> Unit,
     onConfirmation: (Note) -> Unit,
     onDeleteClick: (Note) -> Unit = {},
-    note: Note? = null
+    note: Note? = null,
+    modifier: Modifier = Modifier
 ) {
     var noteTitle by remember { mutableStateOf("") }
     var noteText by remember { mutableStateOf("") }
@@ -173,9 +180,10 @@ fun NoteDialog(
         noteText = note.content
     }
 
-    Dialog(onDismissRequest = { onDismissRequest() }) {
+    Dialog(
+        onDismissRequest = { onDismissRequest() }) {
         Card(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
                 .height(320.dp)
                 .padding(16.dp),
@@ -200,13 +208,15 @@ fun NoteDialog(
                 OutlinedTextField(
                     value = noteTitle,
                     onValueChange = { noteTitle = it },
-                    label = { Text("Title") }
+                    label = { Text("Title") },
+                    modifier = Modifier.testTag("titleField")
                 )
 
                 OutlinedTextField(
                     value = noteText,
                     onValueChange = { noteText = it },
-                    label = { Text("Content") }
+                    label = { Text("Content") },
+                    modifier = Modifier.testTag("contentField")
                 )
 
                 Row(

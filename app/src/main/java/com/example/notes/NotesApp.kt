@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.example.notes.ui.HomeViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -60,14 +61,15 @@ fun NotesAppTopBar(scrollBehavior: TopAppBarScrollBehavior,
                 text = stringResource(R.string.app_name)
             )
         },
-        modifier = modifier,
+        modifier = modifier.testTag("toggle"),
         actions = {
             Switch(
                 checked = checked,
                 onCheckedChange = {
                     setDarkMode(!checked)
                     checked = it
-                }
+                },
+
             )
         }
     )

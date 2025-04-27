@@ -1,17 +1,20 @@
 package com.example.notes
 
+import androidx.compose.material3.Text
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.notes.data.NotesDatabase
+import com.example.notes.data.NotesRepository
+import com.example.notes.ui.HomeScreen
+import com.example.notes.ui.HomeViewModel
+import com.example.notes.ui.theme.NotesTheme
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Test
 
 import org.junit.Assert.*
-
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
-    }
-}
+import org.junit.Rule
+import org.junit.runner.RunWith
+import org.junit.runner.manipulation.Ordering.Context
+import kotlin.contracts.ExperimentalContracts

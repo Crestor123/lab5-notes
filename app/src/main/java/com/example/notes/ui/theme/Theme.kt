@@ -43,11 +43,10 @@ fun NotesTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
+    themeViewModel: ThemeViewModel = viewModel(factory = AppViewModelProvider.Factory),
     content: @Composable () -> Unit
 ) {
-    val themeModel: ThemeViewModel = viewModel(factory = AppViewModelProvider.Factory)
-
-    val isDarkTheme by themeModel.isDarkMode.collectAsState()
+    val isDarkTheme by themeViewModel.isDarkMode.collectAsState()
 
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
